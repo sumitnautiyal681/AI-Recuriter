@@ -45,12 +45,14 @@ const handleEvaluate = async () => {
         const response = await api.post("/evaluate", formData);
 
         setResults(response.data.candidates);
-        setLoading(false);
+     
 
     } catch (error) {
-        setLoading(false);
+      
         alert(error.response?.data?.detail || "Something went wrong");
 
+    } finally {
+        setLoading(false);
     }
 };
     return (
@@ -119,6 +121,14 @@ const handleEvaluate = async () => {
 >
     {loading ? "Evaluating Candidates..." : "Evaluate Candidates"}
 </button>
+{loading && (
+    <div className="loader-container">
+        <div className="loader"></div>
+        <p className="loader-text">
+            Evaluating resumes with AI...
+        </p>
+    </div>
+)}
             {results.length > 0 && (
 
     <div className="results">
