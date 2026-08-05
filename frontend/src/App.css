@@ -106,6 +106,10 @@ tr:nth-child(even) {
     border-radius: 20px;
     font-size: 12px;
 }
+button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
 
 /* Tablet */
 @media (max-width: 768px) {
@@ -133,7 +137,12 @@ tr:nth-child(even) {
         padding: 8px;
         font-size: 14px;
     }
+    button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
 }
+}
+
 
 /* Mobile */
 @media (max-width: 480px) {
@@ -166,4 +175,8 @@ tr:nth-child(even) {
         font-size: 11px;
         padding: 4px 8px;
     }
+    button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
 }

@@ -10,6 +10,8 @@ function JobForm() {
     const [experience, setExperience] = useState("");
     const [files, setFiles] = useState([]);
     const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 const handleEvaluate = async () => {
 
     if (
@@ -37,15 +39,16 @@ const handleEvaluate = async () => {
     files.forEach((file) => {
         formData.append("files", file);
     });
-
+    setLoading(true);
     try {
-
+        
         const response = await api.post("/evaluate", formData);
 
         setResults(response.data.candidates);
+        setLoading(false);
 
     } catch (error) {
-
+        setLoading(false);
         alert(error.response?.data?.detail || "Something went wrong");
 
     }
@@ -110,8 +113,11 @@ const handleEvaluate = async () => {
 
             <ResumeUpload setFiles={setFiles}/>
 
-            <button onClick={handleEvaluate}>
-    Evaluate Candidates
+            <button
+    onClick={handleEvaluate}
+    disabled={loading}
+>
+    {loading ? "Evaluating Candidates..." : "Evaluate Candidates"}
 </button>
             {results.length > 0 && (
 
