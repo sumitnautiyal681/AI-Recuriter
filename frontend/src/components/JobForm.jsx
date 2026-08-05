@@ -12,6 +12,20 @@ function JobForm() {
     const [results, setResults] = useState([]);
 const handleEvaluate = async () => {
 
+    if (
+        !jobTitle.trim() ||
+        !jobDescription.trim() ||
+        !requiredSkills.trim() ||
+        !experience.trim()
+    ) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    if (files.length === 0) {
+        alert("Please upload at least one resume.");
+        return;
+    }
     const formData = new FormData();
 
     formData.append("jobTitle", jobTitle);
